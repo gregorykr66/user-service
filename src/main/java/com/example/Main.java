@@ -17,14 +17,14 @@ class Main {
     */
     // Gateway service uses:
 
-    Subscription.Sender sender = Service.service(new Subscription[]{
+    Subscription.Sender globalSender = Service.service(new Subscription[]{
         new Subscription("display", "display", (body, sender) -> {
           System.out.println("display: display");
           System.out.println(body);
           // Push message over socket to the user
         })
     });
-    sender.send("display", "Everything works!");
+    globalSender.send("display", "Everything works!");
   }
 
 }
