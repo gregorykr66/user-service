@@ -6,25 +6,25 @@ class Main {
     // Listener services use:
     /*
     Service.service(new Subscription[]{
-        new Subscription("user-history", "buy-product", (body, send) -> {
+        new Subscription("user-history", "buy-product", (body, sender) -> {
           System.out.println("user-history: buy-product");
         }),
-        new Subscription("user-history", "login", (body, send) -> {
+        new Subscription("user-history", "login", (body, sender) -> {
           System.out.println("user-history: login");
-          send.send("buy-product", "Coffee");
+          sender.send("buy-product", "Coffee");
         })
     });
     */
     // Gateway service uses:
 
-    Subscription.Sender s = Service.service(new Subscription[]{
-        new Subscription("display", "display", (body, send) -> {
+    Subscription.Sender sender = Service.service(new Subscription[]{
+        new Subscription("display", "display", (body, sender) -> {
           System.out.println("display: display");
           System.out.println(body);
           // Push message over socket to the user
         })
     });
-    s.send("display", "Everything works!");
+    sender.send("display", "Everything works!");
   }
 
 }
