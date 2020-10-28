@@ -1,10 +1,22 @@
 package com.example;
 
-class Main {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@SpringBootApplication
+public class Main {
+
+  @RequestMapping("/")
+  String index() {
+    return "Running";
+  }
 
   public static void main(String[] args) throws Exception {
-    // Listener services use:
     /*
+    // Listener services use:
     Service.service(new Subscription[]{
         new Subscription("user-history", "buy-product", (body, sender) -> {
           System.out.println("user-history: buy-product");
@@ -15,8 +27,8 @@ class Main {
         })
     });
     */
-    // Gateway service uses:
 
+    // Gateway service uses:
     Subscription.Sender globalSender = Service.service(new Subscription[]{
         new Subscription("display", "display", (body, sender) -> {
           System.out.println("display: display");
@@ -25,6 +37,8 @@ class Main {
         })
     });
     globalSender.send("display", "Everything works!");
+
+    SpringApplication.run(Main.class, args);
   }
 
 }
