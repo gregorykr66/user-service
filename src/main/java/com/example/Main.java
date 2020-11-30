@@ -21,7 +21,7 @@ public class Main {
         new Subscription("user", "fetch-product", (body, sender) -> {
           System.out.println("user: fetch-product");
           System.out.println(body);
-          sender.send("fetch-stock", "Session_Id, Location, Product_id");
+          sender.send("fetch-stock", "Session_Id,Location,Product_id");
           // Push message over socket to the user
         })
     });
