@@ -18,8 +18,8 @@ public class Main {
 
     // Gateway service uses:
     Service.service(new Subscription[]{
-        new Subscription("user", "fetch-product", (body, sender) -> {
-          System.out.println("user: fetch-product");
+        new Subscription("user", "fetch-product-page", (body, sender) -> {
+          System.out.println("user: fetch-product-page");
           System.out.println(body);
           sender.send("fetch-stock", "Session_Id,Location,Product_id");
           // Push message over socket to the user
